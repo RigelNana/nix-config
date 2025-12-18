@@ -24,9 +24,6 @@
     nix-tree
     nix-index
     kitty
-    fuzzel
-    waybar
-    mako
     swww
     wl-clipboard
     neovim
@@ -35,6 +32,9 @@
     slurp
     imv
     mpv
+    zed-editor
+    swaybg
+    xwayland-satellite
   ];
   programs.nh = {
     enable = true;
@@ -42,6 +42,11 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/rigel/nix-config";
   };
+  programs.fuzzel.enable = true; 
+  programs.swaylock.enable = true;
+  programs.waybar.enable = true;
+  services.mako.enable = true;
+  services.polkit-gnome.enable = true;
   programs.zsh = {
     enable = true;
     enableCompletion = true;
