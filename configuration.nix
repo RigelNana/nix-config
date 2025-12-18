@@ -21,7 +21,7 @@
     source-han-sans
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     jetbrains-mono
     fira-code
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
