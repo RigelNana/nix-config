@@ -16,6 +16,25 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Shanghai";
+  fonts.packages = with pkgs; [
+    noto-fonts
+    source-han-sans
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-emoji
+    jetbrains-mono
+    fira-code
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
+
+  ];
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      emoji = ["Noto Color Emoji"];
+      monospace = ["JetBrainsMono Nerd Font"];
+      sansSerif = ["Source Han Sans"];
+    };
+  };
   
   virtualisation.podman = {
     enable = true;
@@ -30,6 +49,14 @@
   networking.firewall.allowedTCPPorts = [ 2017 ];
   programs.niri.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "zh_CN.UTF-8/UTF-8"
+    "ja_JP.UTF-8/UTF-8"
+  ];
+  console = {
+    font = "Lat2-Terminus16";
+  };
   services.pipewire = {
     enable = true;
     pulse.enable = true;
