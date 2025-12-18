@@ -24,7 +24,6 @@
     noto-fonts-color-emoji
     jetbrains-mono
     fira-code
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
 
   ];
   fonts.fontconfig = {
