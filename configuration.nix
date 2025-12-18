@@ -62,7 +62,8 @@
       fcitx5-gtk
       fcitx5-rime
       rime-data
-      fcitx5-configtool
+      kdePackages.fcitx5-configtool
+      kdePackages.fcitx5-qt
       fcitx5-chinese-addons
     ];
   };
