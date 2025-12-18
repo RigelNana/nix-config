@@ -34,6 +34,9 @@
       sansSerif = ["Source Han Sans"];
     };
   };
+  security.polkit.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
   
   virtualisation.podman = {
     enable = true;
