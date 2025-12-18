@@ -38,6 +38,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   
+  programs.nix-ld.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
