@@ -14,9 +14,14 @@
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   networking.networkmanager.enable = true;
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
+	user = "greeter";
+      };
+    };
   };
 
   time.timeZone = "Asia/Shanghai";
