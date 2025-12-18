@@ -35,6 +35,7 @@
     zed-editor
     swaybg
     xwayland-satellite
+    ffmpeg
   ];
   programs.nh = {
     enable = true;
