@@ -52,7 +52,7 @@
     enable = true;
     userName = "RigelNana";
     userEmail = "809239189@qq.com";
-  }
+  };
 
   
   programs.direnv = {
