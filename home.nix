@@ -65,6 +65,7 @@
       email = "809239189@qq.com";
     };
   };
+  programs.ssh.enableDefaultConfig = false;
   programs.ssh.matchBlocks."*" = {
     forwardAgent = false;
     addKeysToAgent = "no";
