@@ -13,7 +13,7 @@
       nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
       
   };
-  outputs = {self, nixpkgs, nixpkgs-stable, home-manager, nix-index-database, ... }@inputs: {
+  outputs = {self, nixpkgs, nixpkgs-stable, home-manager, nix-index-database, nixos-hardware,... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         ./configuration.nix
