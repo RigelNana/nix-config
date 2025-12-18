@@ -50,7 +50,6 @@
   };
   security.polkit.enable = true;
   hardware.bluetooth.enable = true;
-  hardware.intelgpu.vaapiDriver = "intel-media-driver";
   services.blueman.enable = true;
   
   programs.nix-ld.enable = true;
