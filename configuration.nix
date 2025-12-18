@@ -55,6 +55,17 @@
   };
   networking.proxy.default = "http://localhost:20171";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-qt
+      fcitx5-rime
+      fcitx5-configtool
+      fcitx5-chinese-addons
+    ];
+  };
 
   programs.zsh.enable = true;
   services.v2raya.enable = true;

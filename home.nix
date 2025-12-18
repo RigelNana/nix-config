@@ -36,6 +36,7 @@
     swaybg
     xwayland-satellite
     ffmpeg
+    yazi
   ];
   programs.nh = {
     enable = true;
