@@ -31,7 +31,14 @@
     swww
     wl-clipboard
     neovim
+    google-chrome
   ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
   
   programs.direnv = {
     enable = true;

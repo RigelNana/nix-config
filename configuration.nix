@@ -25,6 +25,7 @@
   networking.proxy.default = "http://localhost:20171";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  programs.zsh.enable = true;
   services.v2raya.enable = true;
   networking.firewall.allowedTCPPorts = [ 2017 ];
   programs.niri.enable = true;
@@ -38,6 +39,7 @@
 
    users.users.rigel = {
      isNormalUser = true;
+     shell = pkgs.zsh;
      extraGroups = [ "wheel" "networkmanager" ];
      packages = with pkgs; [];
    };
