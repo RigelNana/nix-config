@@ -20,7 +20,6 @@
     file
     which
     tree
-    nh
     nix-output-monitor
     nix-tree
     nix-index
@@ -33,6 +32,12 @@
     neovim
     google-chrome
   ];
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/rigel/nix-config";
+  };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
