@@ -8,6 +8,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
@@ -27,6 +28,7 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
     ];
   };
   time.timeZone = "Asia/Shanghai";
@@ -89,6 +91,8 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    alsa.enable = true;
+    jack.enable = true;
   };
 
   # services.libinput.enable = true;
