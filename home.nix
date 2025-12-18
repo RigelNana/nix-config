@@ -30,10 +30,12 @@
     mako
     swww
     wl-clipboard
+    neovim
   ];
   
-  home.sessionVariables = {
-    NH_FLAKE = "/etc/nixos";
-  };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  }; 
   home.stateVersion = "25.11";
 } 
