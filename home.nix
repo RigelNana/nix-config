@@ -31,6 +31,10 @@
     wl-clipboard
     neovim
     google-chrome
+    grim
+    slurp
+    imv
+    mpv
   ];
   programs.nh = {
     enable = true;
@@ -44,6 +48,12 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
   };
+  programs.git = {
+    enable = true;
+    userName = "RigelNana";
+    userEmail = "809239189@qq.com";
+  }
+
   
   programs.direnv = {
     enable = true;

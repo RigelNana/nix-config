@@ -14,6 +14,10 @@
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   networking.networkmanager.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
   time.timeZone = "Asia/Shanghai";
   fonts.packages = with pkgs; [
