@@ -14,6 +14,7 @@
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
+  programs.ssh.startAgent = true;
   networking.networkmanager.enable = true;
   services.greetd = {
     enable = true;
