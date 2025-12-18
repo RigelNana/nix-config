@@ -23,7 +23,7 @@
       };
     };
   };
-
+  xdg.portal.enable = true;
   time.timeZone = "Asia/Shanghai";
   fonts.packages = with pkgs; [
     noto-fonts
