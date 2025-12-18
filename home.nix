@@ -50,8 +50,10 @@
   };
   programs.git = {
     enable = true;
-    userName = "RigelNana";
-    userEmail = "809239189@qq.com";
+    settings.user = {
+      name = "RigelNana";
+      email = "809239189@qq.com";
+    };
   };
 
   
