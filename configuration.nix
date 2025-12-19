@@ -13,7 +13,17 @@
   networking.hostName = "nixos"; # Define your hostname.
   nix.settings.substituters = [ "https://cache.nixos.org/" "https://mirrors.ustc.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = ["nix-command" "flakes" ];
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ];
+  };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
+  services.fprintd.enable = true;
   networking.networkmanager.enable = true;
   services.greetd = {
     enable = true;
@@ -48,6 +58,10 @@
     jetbrains-mono
     fira-code
     lxgw-wenkai-screen
+    corefonts
+    vista-fonts
+    vista-fonts-chs
+    nur.repos.linyinfeng.plangothic
 
   ];
   fonts.fontconfig = {
@@ -79,6 +93,8 @@
       kdePackages.fcitx5-qt
       qt6Packages.fcitx5-chinese-addons
     ];
+    fcitx5.waylandFrontend = true;
+
   };
 
   programs.zsh.enable = true;
@@ -101,7 +117,7 @@
     jack.enable = true;
   };
 
-  # services.libinput.enable = true;
+   services.libinput.enable = true;
 
    users.users.rigel = {
      isNormalUser = true;

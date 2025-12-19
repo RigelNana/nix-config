@@ -13,7 +13,6 @@
     yq
     eza
     fzf
-    zoxide
     bat
     fd
     sd
@@ -23,7 +22,9 @@
     nix-output-monitor
     nix-tree
     nix-index
-    kitty
+    nix-inspect
+    nix-init
+    nurl
     swww
     wl-clipboard
     neovim
@@ -38,7 +39,28 @@
     ffmpeg
     yazi
     qq
+    xh
+    dust
+    gping
   ];
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "Maple Mono NF CN";
+      size = 14;
+    };
+    settings = {
+      background_opacity = "0.9";
+    };
+  };
   programs.vscode = {
     enable = true;
   };
@@ -51,6 +73,9 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    settings = {
+      add_newline = false;
+    };
   };
   programs.fuzzel.enable = true; 
   programs.swaylock.enable = true;
