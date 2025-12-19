@@ -37,6 +37,7 @@
     xwayland-satellite
     ffmpeg
     yazi
+    wechat
   ];
   programs.vscode = {
     enable = true;

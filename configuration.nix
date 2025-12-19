@@ -47,6 +47,7 @@
     maple-mono.NF-CN
     jetbrains-mono
     fira-code
+    lxgw-wenkai-screen
 
   ];
   fonts.fontconfig = {
