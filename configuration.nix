@@ -44,6 +44,7 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
+    maple-mono.NF-CN
     jetbrains-mono
     fira-code
 
