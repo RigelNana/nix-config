@@ -42,6 +42,7 @@
     xh
     dust
     gping
+    bottom
   ];
   programs.zoxide = {
     enable = true;
