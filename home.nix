@@ -47,6 +47,10 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/rigel/nix-config";
   };
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.fuzzel.enable = true; 
   programs.swaylock.enable = true;
   programs.waybar.enable = true;
@@ -57,6 +61,11 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    shellAliases = {
+      ls = "eza --icons";
+      ll = "eza -lh --icons --grid";
+    };
+
   };
   programs.git = {
     enable = true;
