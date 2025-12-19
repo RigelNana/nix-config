@@ -11,7 +11,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
-  nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+  nix.settings.substituters = [ "https://cache.nixos.org/" ];
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   networking.networkmanager.enable = true;
