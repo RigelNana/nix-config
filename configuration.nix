@@ -11,7 +11,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
-  nix.settings.substituters = [ "https://cache.nixos.org/" ];
+  nix.settings.substituters = [ "https://cache.nixos.org/" "https://mirrors.ustc.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   networking.networkmanager.enable = true;
@@ -68,8 +68,6 @@
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
   };
-  networking.proxy.default = "http://localhost:20171";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";

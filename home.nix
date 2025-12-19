@@ -37,6 +37,7 @@
     xwayland-satellite
     ffmpeg
     yazi
+    qq
   ];
   programs.vscode = {
     enable = true;
@@ -98,10 +99,15 @@
       };
     };
   };
+
+  home.file.".config/niri/config.kdl" = {
+    source = ./config.kdl;
+  };
   
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    enableZshIntegration = true;
   }; 
   home.stateVersion = "25.11";
 } 
