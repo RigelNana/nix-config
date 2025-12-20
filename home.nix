@@ -178,6 +178,8 @@
     };
     settings = {
       background_opacity = 0.9;
+      hide_window_decorations = true;
+      window_padding_width = 5;
     };
   };
   programs.vscode = {
