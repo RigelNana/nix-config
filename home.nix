@@ -1,6 +1,26 @@
 { config, pkgs, ... }:
 {
   home.username = "rigel";
+  # home.sessionVariables = {
+  #  QT_IM_MODULES = "wayland;fcitx";
+  #  QT_IM_MODULE = "fcitx";
+  #  XMODIFIERS="@im=fcitx";
+  # };
+  # xdg.configFile."gtk-3.0/settings.ini".text = ''
+  #  [Settings]
+  #  gtk-im-module=fcitx
+  # '';
+  # xdg.configFile."gtk-4.0/settings.ini".text = ''
+  #  [Settings]
+  #  gtk-im-module=fcitx
+  # '';
+  # home.file.".gtkrc-2.0".text = ''
+  #  gtk-im-module=fcitx
+  # '';
+
+  # home.file.".Xresources".text = ''
+  #  Xft.dpi: 192
+  # '';
   home.homeDirectory = "/home/rigel";
   home.packages = with pkgs; [
     fastfetch
@@ -19,6 +39,7 @@
     file
     which
     tree
+    localsend
     nix-output-monitor
     nix-tree
     nix-index
@@ -27,6 +48,8 @@
     nurl
     swww
     wl-clipboard
+    pavucontrol
+    brightnessctl
     neovim
     google-chrome
     grim
@@ -35,6 +58,7 @@
     mpv
     zed-editor
     swaybg
+    libnotify
     xwayland-satellite
     ffmpeg
     yazi
@@ -54,12 +78,14 @@
   };
   programs.kitty = {
     enable = true;
+    shellIntegration.enableZshIntegration = true;
+    themeFile = "Catppuccin-Macchiato";
     font = {
       name = "Maple Mono NF CN";
       size = 14;
     };
     settings = {
-      background_opacity = "0.9";
+      background_opacity = 0.9;
     };
   };
   programs.vscode = {
@@ -81,7 +107,13 @@
   programs.fuzzel.enable = true; 
   programs.swaylock.enable = true;
   programs.waybar.enable = true;
-  services.mako.enable = true;
+  services.mako = {
+    enable = true;
+    settings = {
+      default-timeout = 8000;
+      border-radius = 8;
+    };
+  };
   services.polkit-gnome.enable = true;
   programs.zsh = {
     enable = true;
@@ -125,8 +157,31 @@
       };
     };
   };
+  fonts.fontconfig.enable = true;
+  xdg.configFile."electron-flags.conf".text = ''
+    --enable-features=UseOzonePlatform
+    --ozone-platform=wayland
+    --enable-wayland-ime
+  '';
 
-  home.file.".config/niri/config.kdl" = {
+  xdg.portal = {
+    enable = true;
+    config = {
+      common = {
+        default = [ "gtk" "gnome" ];
+      };
+      niri = {
+        default = [ "gtk" "gnome" ];
+      };
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    xdgOpenUsePortal = true;
+  };
+
+  xdg.configFile."niri/config.kdl" = {
     source = ./config.kdl;
   };
   

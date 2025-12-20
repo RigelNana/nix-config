@@ -11,12 +11,20 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
-  nix.settings.substituters = [ "https://cache.nixos.org/" "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+  nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" "https://cache.nixos.org/" ];
   nix.settings.experimental-features = ["nix-command" "flakes" ];
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
+
     extraPackages = with pkgs; [
       intel-media-driver
+      libva-utils
+      mesa
+      ffmpeg
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      mesa
     ];
   };
   environment.sessionVariables = {
@@ -40,13 +48,6 @@
     options = "--delete-older-than 7d";
   };
   nix.settings.auto-optimise-store = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-    ];
-  };
   time.timeZone = "Asia/Shanghai";
   fonts.packages = with pkgs; [
     noto-fonts
@@ -85,6 +86,7 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
+    fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
       fcitx5-rime
@@ -92,14 +94,13 @@
       kdePackages.fcitx5-configtool
       kdePackages.fcitx5-qt
       qt6Packages.fcitx5-chinese-addons
+      libsForQt5.fcitx5-qt
     ];
-    fcitx5.waylandFrontend = true;
 
   };
 
   programs.zsh.enable = true;
   services.v2raya.enable = true;
-  networking.firewall.allowedTCPPorts = [ 2017 ];
   programs.niri.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [
@@ -107,6 +108,9 @@
     "zh_CN.UTF-8/UTF-8"
     "ja_JP.UTF-8/UTF-8"
   ];
+  i18n.extraLocaleSettings = {
+    LC_MESSAGES = "zh_CN.UTF-8";
+  };
   console = {
     font = "Lat2-Terminus16";
   };
