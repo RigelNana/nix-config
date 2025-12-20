@@ -18,6 +18,10 @@
   services.xserver = { 
     enable = true;
   };
+  nix.registry.dev.to = {
+    type = "path";
+    path = "/home/rigel/nix-template";
+  };
   networking.firewall.enable = false;
   hardware.graphics = {
     enable = true;

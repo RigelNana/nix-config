@@ -70,6 +70,7 @@
     localsend
     nautilus
     kdePackages.okular
+    wpsoffice-cn
   ];
   programs.zoxide = {
     enable = true;
