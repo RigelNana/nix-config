@@ -5,6 +5,7 @@
       nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
       nixos-hardware.url = "github:NixOS/nixos-hardware/master";
       
+      nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.6.0";
       home-manager = {
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -17,11 +18,12 @@
       nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
       
   };
-  outputs = {self, nixpkgs, nixpkgs-stable, home-manager, nix-index-database, nixos-hardware, nur, ... }@inputs:{
+  outputs = {self, nixpkgs, nixpkgs-stable, home-manager, nix-index-database, nixos-hardware, nur, nix-flatpak, ... }@inputs:{
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
+	nix-flatpak.nixosModules.nix-flatpak
 	{
 	  nixpkgs.config.allowUnfree = true;
 	  nixpkgs.overlays = [ nur.overlays.default ];
@@ -32,8 +34,11 @@
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.rigel = import ./home.nix;
 	  home-manager.extraSpecialArgs = { inherit inputs; };
+	  home-manager.users.rigel.imports = [
+	    ./home.nix
+	    nix-flatpak.homeManagerModules.nix-flatpak
+	  ];
         }
 
       ];

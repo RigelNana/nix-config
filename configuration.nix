@@ -10,9 +10,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  programs.xwayland.enable = true;
   networking.hostName = "nixos"; # Define your hostname.
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" "https://cache.nixos.org/" ];
   nix.settings.experimental-features = ["nix-command" "flakes" ];
+  services.flatpak.enable = true;
+  services.xserver = { 
+    enable = true;
+  };
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -29,6 +34,7 @@
   };
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
+    NIXOS_OZONE_WL = "1";
   };
 
   services.fprintd.enable = true;

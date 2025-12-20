@@ -41,6 +41,20 @@
         "type": "github"
       }
     },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1739444422,
+        "narHash": "sha256-iAVVHi7X3kWORftY+LVbRiStRnQEob2TULWyjMS6dWg=",
+        "rev": "5e54c3ca05a7c7d968ae1ddeabe01d2a9bc1e177",
+        "revCount": 98,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/gmodena/nix-flatpak/0.6.0/0194fefb-c32f-7b1d-a9ce-f4a93fc7eeee/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/gmodena/nix-flatpak/0.6.0"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -133,6 +147,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

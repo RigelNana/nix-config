@@ -1,28 +1,29 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   home.username = "rigel";
-  # home.sessionVariables = {
-  #  QT_IM_MODULES = "wayland;fcitx";
-  #  QT_IM_MODULE = "fcitx";
-  #  XMODIFIERS="@im=fcitx";
-  # };
-  # xdg.configFile."gtk-3.0/settings.ini".text = ''
-  #  [Settings]
-  #  gtk-im-module=fcitx
-  # '';
-  # xdg.configFile."gtk-4.0/settings.ini".text = ''
-  #  [Settings]
-  #  gtk-im-module=fcitx
-  # '';
-  # home.file.".gtkrc-2.0".text = ''
-  #  gtk-im-module=fcitx
-  # '';
+  home.sessionVariables = {
+    QT_IM_MODULES = "wayland;fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS="@im=fcitx";
+   };
+  xdg.configFile."gtk-3.0/settings.ini".text = ''
+   [Settings]
+   gtk-im-module=fcitx
+  '';
+  xdg.configFile."gtk-4.0/settings.ini".text = ''
+   [Settings]
+   gtk-im-module=fcitx
+  '';
+  home.file.".gtkrc-2.0".text = ''
+   gtk-im-module=fcitx
+  '';
+  xresources.properties = {
+    "Xft.dpi" = 192;
+  };
 
-  # home.file.".Xresources".text = ''
-  #  Xft.dpi: 192
-  # '';
   home.homeDirectory = "/home/rigel";
   home.packages = with pkgs; [
+    flatpak
     fastfetch
     zip
     xz
@@ -62,16 +63,17 @@
     xwayland-satellite
     ffmpeg
     yazi
-    qq
     xh
     dust
     gping
     bottom
+    qq
   ];
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
   };
+  
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
@@ -162,7 +164,21 @@
     --enable-features=UseOzonePlatform
     --ozone-platform=wayland
     --enable-wayland-ime
+    --wayland-text-input-version=3
   '';
+  xdg.configFile."qq-flags.conf".text = ''
+    --enable-features=UseOzonePlatform
+    --ozone-platform-hint=auto
+    --enable-wayland-ime
+    --wayland-text-input-version=3
+  '';
+  #services.flatpak.remotes = lib.mkOptionDefault [{
+  #  name = "sjtu";
+  #  location = "https://mirror.sjtu.edu.cn/flathub";
+  #}];
+  #services.flatpak.packages = [
+  #  "com.qq.QQ"
+  #];
 
   xdg.portal = {
     enable = true;
