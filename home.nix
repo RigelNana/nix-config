@@ -71,6 +71,7 @@
     nautilus
     kdePackages.okular
     wpsoffice-cn
+    telegram-desktop
   ];
   programs.zoxide = {
     enable = true;
