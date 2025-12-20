@@ -6,17 +6,17 @@
     QT_IM_MODULE = "fcitx";
     XMODIFIERS="@im=fcitx";
    };
-  xdg.configFile."gtk-3.0/settings.ini".text = ''
-   [Settings]
-   gtk-im-module=fcitx
-  '';
-  xdg.configFile."gtk-4.0/settings.ini".text = ''
-   [Settings]
-   gtk-im-module=fcitx
-  '';
-  home.file.".gtkrc-2.0".text = ''
-   gtk-im-module=fcitx
-  '';
+  #xdg.configFile."gtk-3.0/settings.ini".text = ''
+  # [Settings]
+  # gtk-im-module=fcitx
+  #'';
+  #xdg.configFile."gtk-4.0/settings.ini".text = ''
+  # [Settings]
+  # gtk-im-module=fcitx
+  #'';
+  #home.file.".gtkrc-2.0".text = ''
+  # gtk-im-module=fcitx
+  #'';
   xresources.properties = {
     "Xft.dpi" = 192;
   };
@@ -24,7 +24,6 @@
   home.homeDirectory = "/home/rigel";
   home.packages = with pkgs; [
     flatpak
-    fastfetch
     zip
     xz
     unzip
@@ -36,11 +35,11 @@
     fzf
     bat
     fd
+    waypaper
     sd
     file
     which
     tree
-    localsend
     nix-output-monitor
     nix-tree
     nix-index
@@ -68,12 +67,103 @@
     gping
     bottom
     qq
+    localsend
+    nautilus
+    kdePackages.okular
   ];
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
   };
   
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = {
+        source = "nixos";
+        color = {
+          "1" = "light_blue";    # 标志性的浅蓝
+          "2" = "light_magenta"; # 梦幻的浅粉
+        };
+        padding = {
+          top = 2;
+          right = 4;
+        };
+      };
+      display = {
+        separator = " ➜ ";
+        # 全局亮色设置
+        color = {
+          keys = "magenta"; 
+        };
+      };
+      modules = [
+        {
+          type = "title";
+          color = {
+            user = "light_blue";
+            at = "white";
+            host = "light_magenta";
+          };
+        }
+        "break"
+        
+        # --- 鲜艳色彩组 ---
+        {
+          type = "os";
+          key = "󱄅 os";
+          keyColor = "31"; # 鲜艳红 (ANSI 31)
+        }
+        {
+          type = "kernel";
+          key = "󰌽 kl";
+          keyColor = "33"; # 鲜艳黄 (ANSI 33)
+        }
+        {
+          type = "packages";
+          key = "󰏖 pk";
+          keyColor = "32"; # 鲜艳绿 (ANSI 32)
+        }
+        {
+          type = "shell";
+          key = " sh";
+          keyColor = "36"; # 鲜艳青 (ANSI 36)
+        }
+        {
+          type = "wm";
+          key = " wm";
+          keyColor = "34"; # 鲜艳蓝 (ANSI 34)
+        }
+        {
+          type = "terminal";
+          key = " tr";
+          keyColor = "35"; # 鲜艳紫 (ANSI 35)
+        }
+        
+        "break"
+        
+        # --- 硬件部分（高亮强调） ---
+        {
+          type = "cpu";
+          key = " cpu";
+          keyColor = "bright_red";
+        }
+        {
+          type = "memory";
+          key = " mem";
+          keyColor = "bright_green";
+        }
+        
+        "break"
+        
+        # --- 底部彩色条 ---
+        {
+          type = "colors";
+          symbol = "block"; # 使用方块色块，色彩面积更大更鲜艳
+        }
+      ];
+    };
+  };
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
@@ -180,6 +270,29 @@
   #  "com.qq.QQ"
   #];
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk2.extraConfig = "gtk-im-module = fcitx";
+    gtk3.extraConfig = {
+      gtk-im-module = "fcitx";
+    };
+    gtk4.extraConfig = {
+      gtk-im-module = "fcitx";
+    };
+      
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+  };
   xdg.portal = {
     enable = true;
     config = {

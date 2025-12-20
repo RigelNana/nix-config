@@ -18,6 +18,7 @@
   services.xserver = { 
     enable = true;
   };
+  networking.firewall.enable = false;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -76,7 +77,7 @@
     defaultFonts = {
       emoji = ["Noto Color Emoji"];
       monospace = ["JetBrainsMono Nerd Font"];
-      sansSerif = ["Source Han Sans"];
+      sansSerif = ["Source Han Sans SC"];
     };
   };
   security.polkit.enable = true;
