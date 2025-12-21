@@ -5,6 +5,7 @@
     QT_IM_MODULES = "wayland;fcitx";
     QT_IM_MODULE = "fcitx";
     XMODIFIERS="@im=fcitx";
+    QT_QPA_PLATFORMTHEME="gtk3";
    };
   #xdg.configFile."gtk-3.0/settings.ini".text = ''
   # [Settings]
@@ -81,10 +82,14 @@
     wpsoffice-cn
     telegram-desktop
     obs-studio
+    qalculate-qt
   ];
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
+  };
+  programs.obsidian = {
+    enable = true;
   };
   
   programs.fastfetch = {
@@ -215,13 +220,13 @@
   #};
   programs.fuzzel.enable = true; 
   programs.swaylock.enable = true;
-  services.mako = {
-    enable = true;
-    settings = {
-      default-timeout = 8000;
-      border-radius = 8;
-    };
-  };
+  #services.mako = {
+  #  enable = true;
+  #  settings = {
+  #    default-timeout = 8000;
+  #    border-radius = 8;
+  #  };
+  #};
   services.polkit-gnome.enable = true;
   programs.zsh = {
     enable = true;
