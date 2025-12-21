@@ -63,6 +63,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     source-han-sans
+    lexend
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
@@ -77,6 +78,7 @@
 
   ];
   fonts.fontconfig = {
+
     enable = true;
     defaultFonts = {
       emoji = ["Noto Color Emoji"];
@@ -87,7 +89,9 @@
   security.polkit.enable = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  services.power-profiles-daemon.enable = true;
   
+  services.upower.enable = true;
   programs.nix-ld.enable = true;
   virtualisation.podman = {
     enable = true;

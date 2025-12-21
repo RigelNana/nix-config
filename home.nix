@@ -20,6 +20,14 @@
   xresources.properties = {
     "Xft.dpi" = 192;
   };
+  xdg.desktopEntries."wpsoffice-cn" = {
+    name = "WPS";
+    exec = "env QT_FONT_DPI=192 wps %F";
+  };
+  services.swww.enable = true;
+  programs.noctalia-shell = {
+    enable = true;
+  };
 
   home.homeDirectory = "/home/rigel";
   home.packages = with pkgs; [
@@ -45,8 +53,8 @@
     nix-index
     nix-inspect
     nix-init
+    playerctl
     nurl
-    swww
     wl-clipboard
     pavucontrol
     brightnessctl
@@ -72,6 +80,7 @@
     kdePackages.okular
     wpsoffice-cn
     telegram-desktop
+    obs-studio
   ];
   programs.zoxide = {
     enable = true;
@@ -200,9 +209,12 @@
       add_newline = false;
     };
   };
+  #programs.waybar = {
+  #  enable = true;
+  #  systemd.enable = true;
+  #};
   programs.fuzzel.enable = true; 
   programs.swaylock.enable = true;
-  programs.waybar.enable = true;
   services.mako = {
     enable = true;
     settings = {
@@ -270,9 +282,8 @@
   #  name = "sjtu";
   #  location = "https://mirror.sjtu.edu.cn/flathub";
   #}];
-  #services.flatpak.packages = [
-  #  "com.qq.QQ"
-  #];
+  services.flatpak.packages = [
+  ];
 
   gtk = {
     enable = true;
@@ -295,8 +306,8 @@
   };
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
   };
+
   xdg.portal = {
     enable = true;
     config = {

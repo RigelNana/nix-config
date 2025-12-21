@@ -16,9 +16,13 @@
       };
       nix-index-database.url = "github:nix-community/nix-index-database";
       nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+      noctalia = {
+        url = "github:noctalia-dev/noctalia-shell";
+	inputs.nixpkgs.follows = "nixpkgs";
+      };
       
   };
-  outputs = {self, nixpkgs, nixpkgs-stable, home-manager, nix-index-database, nixos-hardware, nur, nix-flatpak, ... }@inputs:{
+  outputs = {self, nixpkgs, nixpkgs-stable, home-manager, nix-index-database, nixos-hardware, nur, nix-flatpak, noctalia, ... }@inputs:{
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -38,6 +42,7 @@
 	  home-manager.users.rigel.imports = [
 	    ./home.nix
 	    nix-flatpak.homeManagerModules.nix-flatpak
+	    noctalia.homeModules.default
 	  ];
         }
 
