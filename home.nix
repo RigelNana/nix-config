@@ -1,12 +1,25 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   home.username = "rigel";
   home.sessionVariables = {
     QT_IM_MODULES = "wayland;fcitx";
     QT_IM_MODULE = "fcitx";
-    XMODIFIERS="@im=fcitx";
-    QT_QPA_PLATFORMTHEME="gtk3";
-   };
+    XMODIFIERS = "@im=fcitx";
+    QT_QPA_PLATFORMTHEME = "gtk3";
+  };
+  services.udiskie = {
+    enable = true;
+    settings = {
+      program_options = {
+        file_manager = "${pkgs.nautilus}/bin/nautilus";
+      };
+    };
+  };
   #xdg.configFile."gtk-3.0/settings.ini".text = ''
   # [Settings]
   # gtk-im-module=fcitx
@@ -27,6 +40,9 @@
   };
   services.swww.enable = true;
   programs.noctalia-shell = {
+    enable = true;
+  };
+  programs.neovide = {
     enable = true;
   };
 
@@ -60,6 +76,7 @@
     pavucontrol
     brightnessctl
     neovim
+    microsoft-edge
     google-chrome
     grim
     slurp
@@ -83,7 +100,14 @@
     telegram-desktop
     obs-studio
     qalculate-qt
+    cherry-studio
+    nixfmt
+    prismlauncher
+
   ];
+  programs.emacs = {
+    enable = true;
+  };
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
@@ -91,14 +115,14 @@
   programs.obsidian = {
     enable = true;
   };
-  
+
   programs.fastfetch = {
     enable = true;
     settings = {
       logo = {
         source = "nixos";
         color = {
-          "1" = "light_blue";    # 标志性的浅蓝
+          "1" = "light_blue"; # 标志性的浅蓝
           "2" = "light_magenta"; # 梦幻的浅粉
         };
         padding = {
@@ -110,7 +134,7 @@
         separator = " ➜ ";
         # 全局亮色设置
         color = {
-          keys = "magenta"; 
+          keys = "magenta";
         };
       };
       modules = [
@@ -123,7 +147,7 @@
           };
         }
         "break"
-        
+
         # --- 鲜艳色彩组 ---
         {
           type = "os";
@@ -148,16 +172,16 @@
         {
           type = "wm";
           key = " wm";
-          keyColor = "34"; # 鲜艳蓝 (ANSI 34)
-        }
-        {
+          keyColor = "34"; # 鲜艳蓝 (ANSI 34) 
+	} 
+	{
           type = "terminal";
           key = " tr";
           keyColor = "35"; # 鲜艳紫 (ANSI 35)
         }
-        
+
         "break"
-        
+
         # --- 硬件部分（高亮强调） ---
         {
           type = "cpu";
@@ -169,9 +193,9 @@
           key = " mem";
           keyColor = "bright_green";
         }
-        
+
         "break"
-        
+
         # --- 底部彩色条 ---
         {
           type = "colors";
@@ -196,6 +220,7 @@
       background_opacity = 0.9;
       hide_window_decorations = true;
       window_padding_width = 5;
+      enable_audio_bell = false;
     };
   };
   programs.vscode = {
@@ -218,7 +243,7 @@
   #  enable = true;
   #  systemd.enable = true;
   #};
-  programs.fuzzel.enable = true; 
+  programs.fuzzel.enable = true;
   programs.swaylock.enable = true;
   #services.mako = {
   #  enable = true;
@@ -265,8 +290,8 @@
       "github.com" = {
         addKeysToAgent = "yes";
         hostname = "github.com";
-	user = "git";
-	identityFile = "~/.ssh/id_ed25519";
+        user = "git";
+        identityFile = "~/.ssh/id_ed25519";
       };
     };
   };
@@ -303,7 +328,7 @@
     gtk4.extraConfig = {
       gtk-im-module = "fcitx";
     };
-      
+
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -317,10 +342,16 @@
     enable = true;
     config = {
       common = {
-        default = [ "gtk" "gnome" ];
+        default = [
+          "gtk"
+          "gnome"
+        ];
       };
       niri = {
-        default = [ "gtk" "gnome" ];
+        default = [
+          "gtk"
+          "gnome"
+        ];
       };
     };
     extraPortals = [
@@ -333,11 +364,11 @@
   xdg.configFile."niri/config.kdl" = {
     source = ./config.kdl;
   };
-  
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;
-  }; 
+  };
   home.stateVersion = "25.11";
-} 
+}

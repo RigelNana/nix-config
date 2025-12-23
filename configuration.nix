@@ -1,21 +1,50 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-  boot.loader.systemd-boot.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+  services.udisks2.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    fsIdentifier = "label";
+    gfxmodeEfi = "2880x1800";
+    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Bold.ttf";
+    fontSize = 36;
+    gfxpayloadEfi = "text";
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
   programs.xwayland.enable = true;
   networking.hostName = "nixos"; # Define your hostname.
-  nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" "https://cache.nixos.org/" ];
-  nix.settings.experimental-features = ["nix-command" "flakes" ];
+  nix.settings.substituters = [
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    "https://cache.nixos.org/"
+  ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   services.flatpak.enable = true;
-  services.xserver = { 
+  services.xserver = {
     enable = true;
   };
   nix.registry.dev.to = {
@@ -49,7 +78,7 @@
     settings = {
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-	user = "greeter";
+        user = "greeter";
       };
     };
   };
@@ -64,6 +93,7 @@
     noto-fonts
     source-han-sans
     lexend
+    source-code-pro
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
@@ -75,24 +105,34 @@
     vista-fonts
     vista-fonts-chs
     nur.repos.linyinfeng.plangothic
+    hack-font
 
   ];
   fonts.fontconfig = {
 
     enable = true;
     defaultFonts = {
-      emoji = ["Noto Color Emoji"];
-      monospace = ["JetBrainsMono Nerd Font"];
-      sansSerif = ["Source Han Sans SC"];
+      emoji = [ "Noto Color Emoji" ];
+      monospace = [ "JetBrainsMono Nerd Font" ];
+      sansSerif = [ "Source Han Sans SC" ];
     };
   };
   security.polkit.enable = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.power-profiles-daemon.enable = true;
-  
+
   services.upower.enable = true;
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    icu
+    fuse3
+    curl
+    glib
+    openssl
+  ];
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -127,7 +167,10 @@
     LC_MESSAGES = "zh_CN.UTF-8";
   };
   console = {
-    font = "Lat2-Terminus16";
+    earlySetup = true;
+
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+    packages = with pkgs; [ terminus_font ];
   };
   services.pipewire = {
     enable = true;
@@ -136,14 +179,17 @@
     jack.enable = true;
   };
 
-   services.libinput.enable = true;
+  services.libinput.enable = true;
 
-   users.users.rigel = {
-     isNormalUser = true;
-     shell = pkgs.zsh;
-     extraGroups = [ "wheel" "networkmanager" ];
-     packages = with pkgs; [];
-   };
+  users.users.rigel = {
+    isNormalUser = true;
+    shell = pkgs.zsh;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    packages = with pkgs; [ ];
+  };
 
   # programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
@@ -171,4 +217,3 @@
   system.stateVersion = "25.11";
 
 }
-
