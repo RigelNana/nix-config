@@ -67,7 +67,6 @@
     tree
     nix-output-monitor
     nix-tree
-    nix-index
     nix-inspect
     nix-init
     playerctl
@@ -76,7 +75,6 @@
     pavucontrol
     brightnessctl
     neovim
-    microsoft-edge
     google-chrome
     grim
     slurp
@@ -103,6 +101,11 @@
     cherry-studio
     nixfmt
     prismlauncher
+    nvd
+    lazygit
+    zellij
+    duf
+
 
   ];
   programs.emacs = {
@@ -369,6 +372,10 @@
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;
+  };
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = false;
   };
   home.stateVersion = "25.11";
 }

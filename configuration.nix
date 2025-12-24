@@ -36,6 +36,8 @@
   programs.xwayland.enable = true;
   networking.hostName = "nixos"; # Define your hostname.
   nix.settings.substituters = [
+    "https://mirror.sjtu.edu.cn/nix-channels/store"
+    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://cache.nixos.org/"
   ];
@@ -106,6 +108,7 @@
     vista-fonts-chs
     nur.repos.linyinfeng.plangothic
     hack-font
+    iosevka
 
   ];
   fonts.fontconfig = {

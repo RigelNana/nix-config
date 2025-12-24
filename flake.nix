@@ -47,7 +47,10 @@
           }
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
           nix-index-database.nixosModules.default
-          { programs.nix-index-database.comma.enable = true; }
+          { programs.nix-index-database.comma = {
+	      enable = true;
+	    };
+	  }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
