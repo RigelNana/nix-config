@@ -4,7 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.6.0";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -33,6 +33,7 @@
       nur,
       nix-flatpak,
       noctalia,
+      nix-vscode-extensions,
       ...
     }@inputs:
     {
@@ -43,7 +44,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           {
             nixpkgs.config.allowUnfree = true;
-            nixpkgs.overlays = [ nur.overlays.default ];
+            nixpkgs.overlays = [ nur.overlays.default nix-vscode-extensions.overlays.default ];
           }
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
           nix-index-database.nixosModules.default

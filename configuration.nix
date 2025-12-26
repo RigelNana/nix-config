@@ -12,6 +12,11 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
   services.udisks2.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = false;
+  };
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -121,6 +126,7 @@
     };
   };
   security.polkit.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.power-profiles-daemon.enable = true;
@@ -213,6 +219,9 @@
     zip
     tree
     ripgrep
+    gnome-keyring
+    libsecret
+    seahorse
   ];
 
   services.openssh.enable = true;

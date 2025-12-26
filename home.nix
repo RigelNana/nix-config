@@ -65,6 +65,7 @@
     file
     which
     tree
+    nixd
     nix-output-monitor
     nix-tree
     nix-inspect
@@ -105,8 +106,13 @@
     lazygit
     zellij
     duf
-
-
+    
+    (pkgs.wechat.overrideAttrs (oldAttrs: {
+  src = pkgs.fetchurl {
+    url = "https://dldir1.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.AppImage";
+    sha256 = "0v6k7bghgsvjnv2bbfvzqc7256gwa0hri9bdva35269lxrp49gps";
+  };
+}))
   ];
   programs.emacs = {
     enable = true;
@@ -125,8 +131,8 @@
       logo = {
         source = "nixos";
         color = {
-          "1" = "light_blue"; # 标志性的浅蓝
-          "2" = "light_magenta"; # 梦幻的浅粉
+          "1" = "light_blue";
+          "2" = "light_magenta";
         };
         padding = {
           top = 2;
@@ -135,7 +141,6 @@
       };
       display = {
         separator = " ➜ ";
-        # 全局亮色设置
         color = {
           keys = "magenta";
         };
@@ -151,41 +156,39 @@
         }
         "break"
 
-        # --- 鲜艳色彩组 ---
         {
           type = "os";
           key = "󱄅 os";
-          keyColor = "31"; # 鲜艳红 (ANSI 31)
+          keyColor = "31";
         }
         {
           type = "kernel";
           key = "󰌽 kl";
-          keyColor = "33"; # 鲜艳黄 (ANSI 33)
+          keyColor = "33";
         }
         {
           type = "packages";
           key = "󰏖 pk";
-          keyColor = "32"; # 鲜艳绿 (ANSI 32)
+          keyColor = "32";
         }
         {
           type = "shell";
           key = " sh";
-          keyColor = "36"; # 鲜艳青 (ANSI 36)
+          keyColor = "36";
         }
         {
           type = "wm";
           key = " wm";
-          keyColor = "34"; # 鲜艳蓝 (ANSI 34) 
+          keyColor = "34";
 	} 
 	{
           type = "terminal";
           key = " tr";
-          keyColor = "35"; # 鲜艳紫 (ANSI 35)
+          keyColor = "35";
         }
 
         "break"
 
-        # --- 硬件部分（高亮强调） ---
         {
           type = "cpu";
           key = " cpu";
@@ -199,10 +202,9 @@
 
         "break"
 
-        # --- 底部彩色条 ---
         {
           type = "colors";
-          symbol = "block"; # 使用方块色块，色彩面积更大更鲜艳
+          symbol = "block";
         }
       ];
     };
@@ -228,6 +230,47 @@
   };
   programs.vscode = {
     enable = true;
+    profiles.default = {
+      extensions = with pkgs.nix-vscode-extensions.vscode-marketplace-release; [
+        github.copilot
+	github.copilot-chat
+	ms-ceintl.vscode-language-pack-zh-hans
+	catppuccin.catppuccin-vsc
+	catppuccin.catppuccin-vsc-icons
+	ms-python.python
+	llvm-vs-code-extensions.vscode-clangd
+	ms-azuretools.vscode-containers
+	fill-labs.dependi
+	ms-vscode-remote.remote-containers
+	ms-azuretools.vscode-docker
+	usernamehw.errorlens
+	tamasfe.even-better-toml
+	mhutchie.git-graph
+	donjayamanne.githistory
+	github.vscode-github-actions
+	golang.go
+	ms-kubernetes-tools.vscode-kubernetes-tools
+	yzhang.markdown-all-in-one
+	shd101wyy.markdown-preview-enhanced
+	bierner.markdown-mermaid
+	unifiedjs.vscode-mdx
+	oxc.oxc-vscode
+	yoavbls.pretty-ts-errors
+	ms-python.vscode-pylance
+	ms-python.debugpy
+	ms-vscode-remote.remote-ssh
+	ms-vscode-remote.remote-ssh-edit
+	ms-vscode.remote-server
+	ms-vscode.remote-explorer
+	charliermarsh.ruff
+	rust-lang.rust-analyzer
+	svelte.svelte-vscode
+	myriad-dreamin.tinymist
+	redhat.vscode-yaml
+	jnoortheen.nix-ide
+        mkhl.direnv
+      ];
+    };
   };
   programs.nh = {
     enable = true;
