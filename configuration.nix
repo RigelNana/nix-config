@@ -98,6 +98,7 @@
   time.timeZone = "Asia/Shanghai";
   fonts.packages = with pkgs; [
     noto-fonts
+    windows-fonts
     source-han-sans
     lexend
     source-code-pro
@@ -114,6 +115,7 @@
     nur.repos.linyinfeng.plangothic
     hack-font
     iosevka
+
 
   ];
   fonts.fontconfig = {
@@ -222,6 +224,7 @@
     gnome-keyring
     libsecret
     seahorse
+    podman-compose
   ];
 
   services.openssh.enable = true;

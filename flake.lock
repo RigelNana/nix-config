@@ -1,5 +1,24 @@
 {
   "nodes": {
+    "chinese-fonts-overlay": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1763191926,
+        "narHash": "sha256-I71+uQOV9pz8Twf+sGuKvy9K3ldpmYY6wRFGrRMizlg=",
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "18c78ed52845347b8af58f836b568472bed1de62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "brsvh",
+        "ref": "main",
+        "repo": "chinese-fonts-overlay",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -77,7 +96,7 @@
     },
     "nix-vscode-extensions": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1766714990,
@@ -111,17 +130,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1766025857,
-        "narHash": "sha256-Lav5jJazCW4mdg1iHcROpuXqmM94BWJvabLFWaJVJp0=",
-        "owner": "nixos",
+        "lastModified": 1731139594,
+        "narHash": "sha256-IigrKK3vYRpUu+HEjPL/phrfh7Ox881er1UEsZvw9Q4=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "def3da69945bbe338c373fddad5a1bb49cf199ce",
+        "rev": "76612b17c0ce71689921ca12d9ffdc9c23ce40b2",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "rev": "def3da69945bbe338c373fddad5a1bb49cf199ce",
         "type": "github"
       }
     },
@@ -142,6 +161,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1766025857,
+        "narHash": "sha256-Lav5jJazCW4mdg1iHcROpuXqmM94BWJvabLFWaJVJp0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "def3da69945bbe338c373fddad5a1bb49cf199ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "def3da69945bbe338c373fddad5a1bb49cf199ce",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1766651565,
         "narHash": "sha256-QEhk0eXgyIqTpJ/ehZKg9IKS7EtlWxF3N7DXy42zPfU=",
@@ -185,11 +220,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766723920,
-        "narHash": "sha256-p5cGWVoezZpKiC06MZRxpFcV8GfIziEmpi1BNalekpM=",
+        "lastModified": 1766735268,
+        "narHash": "sha256-vYgzDz9vMl9OSRS1d+NMqN2w8IfPZMk71vut7DBGvDo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f752af39cecad9bf591baa9aa83f077369ce85ae",
+        "rev": "93329e80353dd7e59109080439be3757d193d634",
         "type": "github"
       },
       "original": {
@@ -200,12 +235,13 @@
     },
     "root": {
       "inputs": {
+        "chinese-fonts-overlay": "chinese-fonts-overlay",
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "nur": "nur"

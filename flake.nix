@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.6.0";
+    chinese-fonts-overlay.url = "github:brsvh/chinese-fonts-overlay/main";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +35,7 @@
       nix-flatpak,
       noctalia,
       nix-vscode-extensions,
+      chinese-fonts-overlay,
       ...
     }@inputs:
     {
@@ -44,7 +46,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           {
             nixpkgs.config.allowUnfree = true;
-            nixpkgs.overlays = [ nur.overlays.default nix-vscode-extensions.overlays.default ];
+            nixpkgs.overlays = [ nur.overlays.default nix-vscode-extensions.overlays.default chinese-fonts-overlay.overlays.default];
           }
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
           nix-index-database.nixosModules.default
@@ -61,6 +63,7 @@
               ./home.nix
               nix-flatpak.homeManagerModules.nix-flatpak
               noctalia.homeModules.default
+	      nix-index-database.homeModules.default
             ];
           }
 
