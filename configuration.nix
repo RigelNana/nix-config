@@ -8,231 +8,51 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/system/boot.nix
+    ./modules/system/hardware.nix
+    ./modules/system/networking.nix
+    ./modules/system/locale.nix
+    ./modules/system/fonts.nix
+    ./modules/system/users.nix
+    ./modules/system/nix.nix
+    
+    ./modules/services/display.nix
+    ./modules/services/audio.nix
+    ./modules/services/bluetooth.nix
+    ./modules/services/input-method.nix
+    ./modules/services/virtualization.nix
+    ./modules/services/security.nix
+    
+    ./modules/programs/gaming.nix
+    ./modules/programs/development.nix
   ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
-  services.udisks2.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = false;
-  };
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    device = "nodev";
-    fsIdentifier = "label";
-    gfxmodeEfi = "2880x1800";
-    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Bold.ttf";
-    fontSize = 36;
-    gfxpayloadEfi = "text";
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
-  };
-  programs.xwayland.enable = true;
-  networking.hostName = "nixos"; # Define your hostname.
-  nix.settings.substituters = [
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
-    "https://cache.nixos.org/"
-  ];
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  services.flatpak.enable = true;
-  services.xserver = {
-    enable = true;
-  };
-  nix.registry.dev.to = {
-    type = "path";
-    path = "/home/rigel/nix-template";
-  };
-  networking.firewall.enable = false;
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-
-    extraPackages = with pkgs; [
-      intel-media-driver
-      libva-utils
-      mesa
-      ffmpeg
-    ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [
-      mesa
-    ];
-  };
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-    NIXOS_OZONE_WL = "1";
-  };
-
-  services.fprintd.enable = true;
-  networking.networkmanager.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-        user = "greeter";
-      };
-    };
-  };
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  nix.settings.auto-optimise-store = true;
-  time.timeZone = "Asia/Shanghai";
-  fonts.packages = with pkgs; [
-    noto-fonts
-    windows-fonts
-    source-han-sans
-    lexend
-    source-code-pro
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    maple-mono.NF-CN
-    jetbrains-mono
-    fira-code
-    lxgw-wenkai-screen
-    corefonts
-    vista-fonts
-    vista-fonts-chs
-    nur.repos.linyinfeng.plangothic
-    hack-font
-    iosevka
 
 
-  ];
-  services.usbmuxd.enable = true;
-  fonts.fontconfig = {
 
-    enable = true;
-    defaultFonts = {
-      emoji = [ "Noto Color Emoji" ];
-      monospace = [ "JetBrainsMono Nerd Font" ];
-      sansSerif = [ "Source Han Sans SC" ];
-    };
-  };
-  security.polkit.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  services.power-profiles-daemon.enable = true;
+  
+  
 
-  services.upower.enable = true;
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
-    zlib
-    icu
-    fuse3
-    curl
-    glib
-    openssl
-    libplist
-    gtk3
-    libusbmuxd
-    libimobiledevice
-  ];
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-gtk
-      fcitx5-rime
-      rime-data
-      kdePackages.fcitx5-configtool
-      kdePackages.fcitx5-qt
-      qt6Packages.fcitx5-chinese-addons
-      libsForQt5.fcitx5-qt
-    ];
 
-  };
+  
 
-  programs.zsh.enable = true;
-  services.v2raya.enable = true;
-  programs.niri.enable = true;
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.supportedLocales = [
-    "en_US.UTF-8/UTF-8"
-    "zh_CN.UTF-8/UTF-8"
-    "ja_JP.UTF-8/UTF-8"
-  ];
-  i18n.extraLocaleSettings = {
-    LC_MESSAGES = "zh_CN.UTF-8";
-  };
-  console = {
-    earlySetup = true;
 
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-    packages = with pkgs; [ terminus_font ];
-  };
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-    jack.enable = true;
-  };
 
-  services.libinput.enable = true;
+  
+  
+  
+  
 
-  users.users.rigel = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    packages = with pkgs; [ ];
-  };
 
-  # programs.firefox.enable = true;
-  nixpkgs.config.allowUnfree = true;
+  
+  
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    btop
-    curl
-    tmux
-    htop
-    fastfetch
-    pciutils
-    usbutils
-    file
-    unzip
-    zip
-    tree
-    ripgrep
-    gnome-keyring
-    libsecret
-    seahorse
-    podman-compose
-  ];
 
-  services.openssh.enable = true;
+
+
+
+
+  
 
   system.stateVersion = "25.11";
 
