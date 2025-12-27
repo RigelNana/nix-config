@@ -1,0 +1,19 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Mon Oct 20 20:39:33 2025"
+  rime_version: 1.13.1
+patch:
+  schema_list:
+    - {schema: flypy}
+    - {schema: tiger}
+    - {schema: tigress}
+  ascii_composer/switch_key:
+    Caps_Lock: clear # 转大写并清屏 
+    #  如果要把 Caps Lock 设为只改变字母的大小写而不做中西文切换，可将 Caps_Lock 对应的切换方式设为 noop
+    Control_L: noop # 使其主动失效
+    Control_R: noop
+    Eisu_toggle: clear
+    Shift_L: commit_code
+    Shift_R: commit_code

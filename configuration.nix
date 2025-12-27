@@ -118,6 +118,7 @@
 
 
   ];
+  services.usbmuxd.enable = true;
   fonts.fontconfig = {
 
     enable = true;
@@ -143,6 +144,10 @@
     curl
     glib
     openssl
+    libplist
+    gtk3
+    libusbmuxd
+    libimobiledevice
   ];
   virtualisation.podman = {
     enable = true;

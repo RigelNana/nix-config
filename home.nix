@@ -34,6 +34,10 @@
   xresources.properties = {
     "Xft.dpi" = 192;
   };
+  home.file.".local/share/fcitx5/rime" = {
+    source = ./new-rime;
+    recursive = true;
+  };
   xdg.desktopEntries."wpsoffice-cn" = {
     name = "WPS";
     exec = "env QT_FONT_DPI=192 wps %F";
@@ -67,6 +71,7 @@
     which
     tree
     nixd
+    hyprpicker
     nix-output-monitor
     nix-tree
     nix-inspect
@@ -277,6 +282,7 @@
         redhat.vscode-yaml
         jnoortheen.nix-ide
         mkhl.direnv
+	redhat.vscode-yaml
 
       ];
       userSettings = {
@@ -402,6 +408,10 @@
       package = pkgs.gnome-themes-extra;
     };
     gtk2.extraConfig = "gtk-im-module = fcitx";
+    font = {
+      name = "Source Han Sans SC";
+      size = 11;
+    };
     gtk3.extraConfig = {
       gtk-im-module = "fcitx";
     };
