@@ -41,6 +41,7 @@
         redhat.vscode-yaml
         jnoortheen.nix-ide
         mkhl.direnv
+        christian-kohler.path-intellisense
       ];
       userSettings = {
         "workbench.colorTheme" = "Catppuccin Macchiato";
@@ -70,11 +71,11 @@
   programs.emacs.enable = true;
   programs.neovide.enable = true;
 
-  programs.obsidian = {
-    enable = true;
-    vaults."mydoc" = {
-      enable = true;
-      target = "obsidian";
-    };
-  };
+  # programs.obsidian = {
+  #   enable = true;
+  #   vaults."mydoc" = {
+  #     enable = true;
+  #     target = "obsidian";
+  #   };
+  # };
 }

@@ -10,7 +10,7 @@
       ll = "eza -lh --icons --grid";
     };
   };
-
+  programs.zsh.dotDir = config.home.homeDirectory;
   programs.starship = {
     enable = true;
     enableZshIntegration = true;

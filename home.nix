@@ -18,6 +18,7 @@
     ./modules/home/themes/qt.nix
     ./modules/home/xdg/portal.nix
     ./modules/home/xdg/desktop-entries.nix
+    ./modules/home/programs/obsidian.nix
   ];
   home.username = "rigel";
   home.homeDirectory = "/home/rigel";
