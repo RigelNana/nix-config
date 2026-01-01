@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 {
   boot.supportedFilesystems = [ "ntfs" ];
-  
+
+  boot.kernelParams = [ 
+    "snd_hda_intel.model=headset-mode" 
+  ];
   boot.loader.grub = {
     enable = true;
     efiSupport = true;

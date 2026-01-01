@@ -48,7 +48,6 @@
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = [ nur.overlays.default nix-vscode-extensions.overlays.default chinese-fonts-overlay.overlays.default];
           }
-          nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
           nix-index-database.nixosModules.default
           { programs.nix-index-database.comma = {
 	      enable = true;

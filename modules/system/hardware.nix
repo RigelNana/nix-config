@@ -18,6 +18,7 @@
     LIBVA_DRIVER_NAME = "iHD";
     NIXOS_OZONE_WL = "1";
   };
+  hardware.enableAllFirmware = true;
 
   hardware.bluetooth.enable = true;
   services.libinput.enable = true;

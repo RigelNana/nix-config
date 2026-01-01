@@ -35,5 +35,7 @@
     zip
     tree
     ripgrep
+    sof-firmware
+    alsa-ucm-conf
   ];
 }

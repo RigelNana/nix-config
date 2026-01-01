@@ -16,7 +16,9 @@
     zip
     xz
     unzip
+    satty
     p7zip
+    caligula
     ripgrep
     jq
     yq
@@ -24,6 +26,7 @@
     fzf
     bat
     fd
+    nix-bundle
     libplist
     waypaper
     sd

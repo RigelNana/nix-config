@@ -42,6 +42,7 @@
         jnoortheen.nix-ide
         mkhl.direnv
         christian-kohler.path-intellisense
+        ms-toolsai.jupyter
       ];
       userSettings = {
         "workbench.colorTheme" = "Catppuccin Macchiato";

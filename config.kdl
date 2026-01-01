@@ -493,9 +493,10 @@ binds {
     Mod+Space       { spawn-sh "pkill fcitx5 || fcitx5"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
+    Print { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f - --initial-tool=arrow --copy-command=wl-copy --brush-smooth-history-size=5 --disable-notifications --output-filename \"/home/rigel/Pictures/satty/$(date '+%Y%m%d%H%M%S').png\""; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Shift+Print {screenshot;}
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
